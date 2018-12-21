@@ -1,0 +1,10 @@
+# credhub information
+credhub_server: https://credhub.example.com
+credhub_username: ((credhub_username))
+credhub_password: ((credhub_password))
+credhub_path: /concourse/global
+credhub_skip_tls_validation: true
+
+# pipelines repo
+pipelines_repo_uri: https://github.com/patrick-huber-pivotal/credhub-sync-pipelines
+pipelines_repo_branch: master
