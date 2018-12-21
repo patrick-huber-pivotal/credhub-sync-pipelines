@@ -1,7 +1,7 @@
 # credhub information
-credhub_server: https://credhub.example.com
-credhub_username: ((credhub_username))
-credhub_password: ((credhub_password))
+credhub_server: https://192.168.1.16:9000/info
+credhub_username: credhub_client
+credhub_password: secret
 credhub_path: /concourse/global
 credhub_skip_tls_validation: true
 
