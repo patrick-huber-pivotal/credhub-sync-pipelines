@@ -14,6 +14,24 @@ resources:
     path: ((credhub_path))
     skip_tls_validation: ((credhub_skip_tls_validation))
 
+- name: credhub-cli
+  type: github-release
+  source:
+    owner: cloudfoundry-incubator
+    repository: credhub-cli
+    access_token: ((github_access_token))
+    tag_filter: 2\.2\.0
+    globs: credhub-linux-.*\..*\..*.tgz
+
+- name: yq-cli
+  type: github-release
+  source:
+    owner: mikefarah
+    repository: yq
+    access_token: ((github_access_token))
+    tag_filter: 2\.2\.0
+    globs: yq_linux_amd64
+
 - name: pipelines-repo
   type: git
   source:
@@ -21,15 +39,21 @@ resources:
     branch: ((pipelines_repo_branch))
     
 jobs:
+
 - name: sync-credhub-credentials
   plan:
   - aggregate:  
     - get: credentials
       trigger: true
-    - get : pipelines-repo    
+    - get: pipelines-repo    
+    - get: credhub-cli
+    - get: yq-cli
+
   - task: sync-credhub-credentials
     file: pipelines-repo/tasks/sync-credhub-credentials/task.yml
     params:
+      CREDHUB_PATH: ((credhub_path))
+      CREDHUB_MIRROR_PATH: ((credhub_mirror_path))
       CREDHUB_SERVER: ((credhub_server))
       CREDHUB_CLIENT: ((credhub_username))
       CREDHUB_SECRET: ((credhub_password))

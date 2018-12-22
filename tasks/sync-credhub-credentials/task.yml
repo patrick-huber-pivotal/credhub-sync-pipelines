@@ -11,6 +11,8 @@ params:
     CREDHUB_CLIENT:
     CREDHUB_SECRET:
     SKIP_TLS_VALIDATION:
+    CREDHUB_PATH:
+    CREDHUB_MIRROR_PATH:
     
 inputs:
 - name: credentials

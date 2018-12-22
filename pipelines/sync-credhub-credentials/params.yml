@@ -3,6 +3,7 @@ credhub_server: https://192.168.1.16:9000/info
 credhub_username: credhub_client
 credhub_password: secret
 credhub_path: /concourse/global
+credhub_mirror_path: /concourse/team1
 credhub_skip_tls_validation: true
 
 # pipelines repo
